@@ -1,4 +1,4 @@
-# Github local repo setup (MacOS)
+# Github repository local setup (MacOS)
 
 ## Create the Repo
 1. Go to GitHub → Create a new repo named smfirdaus.github.io 
