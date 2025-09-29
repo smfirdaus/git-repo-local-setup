@@ -1,5 +1,9 @@
 # Github repository local setup (MacOS)
 
+## 0. Set Up Git for Version Control
+1. Install Git: `brew install git`  
+2. Configure Git credentials: `git config — global user.name “Your Name” git config — global user.email “you@example.com”`
+
 ## 1. Create the Repo
 1. Go to GitHub → Create a new repo named smfirdaus.github.io 
 - Public repo.
@@ -118,7 +122,7 @@ Don’t need to restart for:
 - Content updates (*.md, *.html).
 - Layouts (_layouts/), includes (_includes/), stylesheets, JS, images.
 
-Jekyll can also rebuild on _config.yml changes without restarting:  
+Jekyll can also rebuild on _config.yml changes without restarting:
 `bundle exec jekyll serve --livereload --force_polling`
 - --livereload: browser auto-refreshes when files change.
 - --force_polling: more reliable file watching on macOS.
@@ -130,7 +134,7 @@ cd smfirdaus.github.io
 git remote add upstream https://github.com/alshedivat/al-folio.git
 ```
 
-2.	Fetch the latest changes from the original theme:  
+2.	Fetch the latest changes from the original theme:
 `git fetch upstream`
 
 3.	Merge or rebase the updates into branch (main):
@@ -138,7 +142,7 @@ git remote add upstream https://github.com/alshedivat/al-folio.git
 git checkout main
 git merge upstream/main
 ```
-or (for a cleaner history):  
+or (for a cleaner history):
 `git rebase upstream/main`
 
 4.	Resolve conflicts manually if some files clash (usually _config.yml, _data/*, or edited layouts).
