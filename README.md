@@ -5,14 +5,14 @@
 - Public repo.
 - No template for now.
 
-2. Clone it to your MacBook:
+2. Clone it to the MacBook:
 ```
 git clone https://github.com/smfirdaus/smfirdaus.github.io.git
 cd smfirdaus.github.io
 ```
 
 ## 2. Add al-folio theme
-1. Clone the al-folio repository to local machine.
+1. Clone the al-folio repository to the local machine.
 ```
 git clone https://github.com/alshedivat/al-folio.git temp-folio
 cp -r temp-folio/* temp-folio/.* ./   # copy into your repo
@@ -21,7 +21,7 @@ rm -rf temp-folio
 2. Install dependencies:
 `bundle install`
 
-- Since al-folio supports jupyter notebooks, we also need to install it. If you are not planning to use notebooks that much, you can install it via pipx. To install both pipx and jupyter, run the following commands:
+- Since al-folio supports jupyter notebooks, we also need to install it. If there's no plan to use notebooks that much, install it via pipx. To install both pipx and jupyter, run the following commands:
 ```
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
@@ -39,7 +39,7 @@ pipx ensurepath
 1. Open the al-folio directory and call Jekyll:
 `bundle exec jekyll serve`
 
-2. Now open http://localhost:4000 → you should see al-folio theme running locally.
+2. Now open http://localhost:4000 to see al-folio theme running locally.
 
 ## 4. Push to GitHub
 1. Once it works locally:
@@ -53,11 +53,11 @@ git push origin main
 Check: https://smfirdaus.github.io
 
 ## 5. Plan for Sub-Sites (/docs, /blog)
-Since GitHub Pages only builds one Jekyll site per repo, you have two options:  
+Since GitHub Pages only builds one Jekyll site per repo, we have two options:  
 
 #### ✅ Option A (Simpler for You):  
 - Keep al-folio as the main site.
-- For /docs and /blog, you pre-build them locally and copy the static output (_site) into /docs and /blog folders in your main repo.
+- For /docs and /blog, pre-build them locally and copy the static output (_site) into /docs and /blog folders in the main repo.
 - Example structure:  
 ```
   smfirdaus.github.io/
@@ -110,7 +110,43 @@ git push origin main
 - Docs site → https://smfirdaus.github.io/docs
 - Blog site → https://smfirdaus.github.io/blog
 
+## 7. Restart the server if making changes for the following:
+- _config.yml (site configuration, plugins, baseurl, theme settings).
+- Gemfile or Gemfile.lock (dependencies).
 
-## 7. Reference:
+Don’t need to restart for:
+- Content updates (*.md, *.html).
+- Layouts (_layouts/), includes (_includes/), stylesheets, JS, images.
+
+Jekyll can also rebuild on _config.yml changes without restarting:  
+`bundle exec jekyll serve --livereload --force_polling`
+- --livereload: browser auto-refreshes when files change.
+- --force_polling: more reliable file watching on macOS.
+
+## 8. Theme upgrade
+1.	Add the original repo as an upstream remote (only once):
+```
+cd smfirdaus.github.io
+git remote add upstream https://github.com/alshedivat/al-folio.git
+```
+
+2.	Fetch the latest changes from the original theme:  
+`git fetch upstream`
+
+3.	Merge or rebase the updates into branch (main):
+```
+git checkout main
+git merge upstream/main
+```
+or (for a cleaner history):  
+`git rebase upstream/main`
+
+4.	Resolve conflicts manually if some files clash (usually _config.yml, _data/*, or edited layouts).
+- Keep the contents (_posts/, docs/, blog/, etc.).
+- Keep the customized config (but check if upstream added new useful options).
+- Let theme updates overwrite the untouched/unedited theme-related files.
+
+  
+## 9. Reference:
 1. https://george-gca.github.io/blog/2022/running-local-al-folio/
 2. https://github.com/alshedivat/al-folio/blob/main/INSTALL.md
